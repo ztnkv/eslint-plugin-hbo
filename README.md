@@ -64,7 +64,7 @@ export default [
 
 | Rule | What it enforces | Options |
 |---|---|---|
-| `no-throw-standard-error` | Disallows `throw new Error / TypeError / RangeError / ...`. All throws must extend the project base error class. | `baseClass: string` — defaults to `HboError`. |
+| `no-throw-standard-error` | Disallows `throw new Error / TypeError / RangeError / ...`. All throws must extend the project base error class. | `baseClass: string` — defaults to `AppError`. |
 
 ### Test file layout
 

@@ -12,7 +12,7 @@ const STANDARD_ERROR_CTORS = new Set([
   'ReferenceError',
 ]);
 
-const DEFAULT_BASE_CLASS = 'HboError';
+const DEFAULT_BASE_CLASS = 'AppError';
 
 type Options = [{ baseClass?: string }];
 
