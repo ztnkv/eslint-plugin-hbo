@@ -1,0 +1,13 @@
+node_modules/
+*.log
+.DS_Store
+.npmrc
+coverage/
+
+# source not shipped — only dist is in npm tarball (declared via `files` in package.json)
+rules/
+__test-support__/
+ast-helpers.ts
+index.ts
+tsconfig.json
+.gitignore

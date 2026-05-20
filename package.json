@@ -1,0 +1,54 @@
+{
+  "name": "@ztnkv/eslint-plugin-hbo",
+  "version": "0.1.0",
+  "description": "Opinionated ESLint rules — author's own conventions: blank-line discipline, error-handling, test file layout, naming hygiene.",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "typescript",
+    "code-style",
+    "testing"
+  ],
+  "author": "Denis Zhitnyakov <denis.zhitnyakov@gmail.com> (https://github.com/ztnkv)",
+  "license": "MIT",
+  "homepage": "https://github.com/ztnkv/eslint-plugin-hbo#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ztnkv/eslint-plugin-hbo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ztnkv/eslint-plugin-hbo/issues"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "eslint": ">=9.0.0"
+  },
+  "dependencies": {
+    "@typescript-eslint/utils": "^8.59.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@typescript-eslint/rule-tester": "^8.59.3",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
