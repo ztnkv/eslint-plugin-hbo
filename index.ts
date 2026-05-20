@@ -24,7 +24,7 @@ import { rule as testMatcherStyle } from './rules/test-matcher-style/test-matche
 
 const plugin = {
   meta: {
-    name: '@ztnkv/eslint-plugin-hbo',
+    name: '@deniszhitnyakov/eslint-plugin-hbo',
     version: '0.1.0',
   },
 

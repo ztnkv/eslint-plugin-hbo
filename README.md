@@ -1,4 +1,4 @@
-# @ztnkv/eslint-plugin-hbo
+# @deniszhitnyakov/eslint-plugin-hbo
 
 Opinionated ESLint rules. My own set of conventions, distilled from the code I
 write across projects — blank-line discipline, error-handling boundaries, test
@@ -17,7 +17,7 @@ defaults.
 ## Install
 
 ```sh
-npm install --save-dev @ztnkv/eslint-plugin-hbo
+npm install --save-dev @deniszhitnyakov/eslint-plugin-hbo
 ```
 
 Peer dependency: `eslint >= 9`.
@@ -26,7 +26,7 @@ Peer dependency: `eslint >= 9`.
 
 ```js
 // eslint.config.js
-import hbo from '@ztnkv/eslint-plugin-hbo';
+import hbo from '@deniszhitnyakov/eslint-plugin-hbo';
 
 export default [
   {
