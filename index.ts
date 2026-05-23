@@ -28,7 +28,7 @@ import { passthrough } from './parsers/passthrough.js';
 const plugin = {
   meta: {
     name: '@deniszhitnyakov/eslint-plugin-hbo',
-    version: '0.4.0',
+    version: '0.4.1',
   },
 
   parsers: {

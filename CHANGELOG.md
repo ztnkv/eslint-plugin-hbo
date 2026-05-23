@@ -4,7 +4,11 @@ All notable changes to `@deniszhitnyakov/eslint-plugin-hbo` are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/), and the
 project adheres to [Semantic Versioning](https://semver.org/).
 
-## [0.4.0]
+## [0.4.1]
+
+> Supersedes a withdrawn `0.4.0` that shipped only partial `.security` support
+> and was unpublished. npm tombstones the `0.4.0` number, so this work ships as
+> `0.4.1`.
 
 ### Added
 
