@@ -32,6 +32,18 @@ ruleTester.run('test-file-suffix-allowlist', rule, {
     },
 
     {
+      name: '.security.test.ts inside __tests__/ — accepted',
+      code: 'export {};',
+      filename: '/repo/src/backend/area/__tests__/some-thing.security.test.ts',
+    },
+
+    {
+      name: '.security.test.tsx inside __tests__/ — accepted',
+      code: 'export {};',
+      filename: '/repo/src/frontend/area/__tests__/some-thing.security.test.tsx',
+    },
+
+    {
       name: 'production file outside __tests__/ — not checked',
       code: 'export {};',
       filename: '/repo/src/backend/area/some-thing.ts',
@@ -51,6 +63,34 @@ ruleTester.run('test-file-suffix-allowlist', rule, {
       code: 'export {};',
       filename: '/repo/src/backend/area/__tests__/some-thing.spec.ts',
       errors: [{ messageId: 'invalidSuffix' }],
+    },
+
+    {
+      name: '.smoke.test.ts — security does not open arbitrary suffixes',
+      code: 'export {};',
+      filename: '/repo/src/backend/area/__tests__/some-thing.smoke.test.ts',
+      errors: [{ messageId: 'invalidSuffix' }],
+    },
+
+    {
+      name: '.e2e.test.ts — security does not open arbitrary suffixes',
+      code: 'export {};',
+      filename: '/repo/src/backend/area/__tests__/some-thing.e2e.test.ts',
+      errors: [{ messageId: 'invalidSuffix' }],
+    },
+
+    {
+      name: 'compound .security.detroit.test.ts — exactly one token allowed',
+      code: 'export {};',
+      filename: '/repo/src/backend/area/__tests__/some-thing.security.detroit.test.ts',
+      errors: [{ messageId: 'compoundSuffix' }],
+    },
+
+    {
+      name: 'compound .detroit.security.test.ts — exactly one token allowed',
+      code: 'export {};',
+      filename: '/repo/src/backend/area/__tests__/some-thing.detroit.security.test.ts',
+      errors: [{ messageId: 'compoundSuffix' }],
     },
   ],
 });

@@ -33,6 +33,24 @@ ruleTester.run('no-test-file-name-mismatch', rule, {
     },
 
     {
+      name: 'security test named by invariant, no production sibling — exempt',
+      code: 'export {};',
+      filename: `${fixturesAreaPath}/__tests__/secrets-redaction.security.test.ts`,
+    },
+
+    {
+      name: 'security test named by production unit, sibling exists — exempt',
+      code: 'export {};',
+      filename: `${fixturesAreaPath}/__tests__/serialize-transport-error.security.test.ts`,
+    },
+
+    {
+      name: 'security test as .tsx, no production sibling — exempt',
+      code: 'export {};',
+      filename: `${fixturesAreaPath}/__tests__/access-control.security.test.tsx`,
+    },
+
+    {
       name: 'production file outside __tests__/ — not checked',
       code: 'export {};',
       filename: `${fixturesAreaPath}/fixture.ts`,
@@ -57,6 +75,13 @@ ruleTester.run('no-test-file-name-mismatch', rule, {
       name: 'contract test for non-existing port file — rejected',
       code: 'export {};',
       filename: `${fixturesAreaPath}/__tests__/missing-base.contract.test.ts`,
+      errors: [{ messageId: 'missingProductionFile' }],
+    },
+
+    {
+      name: 'compound .security.detroit.test.ts — rejected, consistent with suffix-allowlist',
+      code: 'export {};',
+      filename: `${fixturesAreaPath}/__tests__/foo.security.detroit.test.ts`,
       errors: [{ messageId: 'missingProductionFile' }],
     },
   ],

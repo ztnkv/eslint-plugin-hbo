@@ -70,8 +70,8 @@ export default [
 
 | Rule | What it enforces | Options |
 |---|---|---|
-| `test-file-suffix-allowlist` | Files inside `**/__tests__/` must end with one of the allowed suffixes. | `allowedSuffixes: string[]` — defaults to `.detroit.test.ts(x)`, `.london.test.ts(x)`, `.contract.test.ts(x)`. |
-| `no-test-file-name-mismatch` | For `<base>.<style>.test.ts` inside `__tests__/`, a matching `<base>.ts` must exist in the parent area folder. | `testSuffixes: string[]` — defaults to `.detroit.test.ts`, `.london.test.ts`, `.contract.test.ts`. |
+| `test-file-suffix-allowlist` | Files inside `**/__tests__/` must end with one of the allowed suffixes. Exactly one recognized style token (`detroit`, `london`, `contract`, `security`) may precede `.test.ts(x)` — compound names like `.security.detroit.test.ts` are rejected. | `allowedSuffixes: string[]` — defaults to `.detroit.test.ts(x)`, `.london.test.ts(x)`, `.contract.test.ts(x)`, `.security.test.ts(x)`. |
+| `no-test-file-name-mismatch` | For `<base>.<style>.test.ts` inside `__tests__/`, a matching `<base>.ts` must exist in the parent area folder. `.security.test.ts(x)` is exempt: a security test names an invariant and is valid with or without a production sibling. | `testSuffixes: string[]` (suffixes that require a sibling) — defaults to `.detroit.test.ts`, `.london.test.ts`, `.contract.test.ts`. `exemptSuffixes: string[]` — defaults to `.security.test.ts`, `.security.test.tsx`. |
 | `test-body-aaa-blank-lines` | A test body must be split into Arrange / Act / Assert by exactly two blank-line separators between top-level statements. | — |
 | `single-expect-per-test` | One `expect(...)` per `it()` / `test()`. | — |
 | `test-matcher-style` | Enforces a single matcher style per assertion (e.g. always `.toBe(true)` not `.toBeTruthy()` for booleans). | — |
@@ -134,7 +134,7 @@ A few principles behind these rules:
 
 - **Blank lines are syntax.** I treat blank-line discipline as a first-class part of the language. Visual rhythm is not cosmetic; it carries meaning about block boundaries and execution flow. Most of the rules above exist because I got tired of code reviews about it.
 - **Errors are first-class.** Throwing `new Error("...")` from production code is a bug, not shorthand. The codebase should declare its error vocabulary as a class hierarchy, and the linter should enforce it.
-- **Tests announce their style.** Detroit, London, Contract — three different schools of testing with different rules about doubles and isolation. A test file's name tells you which one it follows; the linter ensures the rest of the file lives by that choice.
+- **Tests announce their style.** Detroit, London, Contract — three different schools of testing with different rules about doubles and isolation. A test file's name tells you which one it follows; the linter ensures the rest of the file lives by that choice. `security` is a fourth, orthogonal category: a `*.security.test.ts` pins an invariant (authz-gating, read-only access, secrets redaction) so it's visible by name, runnable as a group, and red in CI when someone cuts the rail — and unlike a style test, it needs no production sibling.
 - **Helpers don't squat in tests.** A factory or helper used in 2+ tests is a public artifact and belongs in `__test-support__/`. Squatting it inline costs review time forever.
 - **Names follow a verb dictionary.** Top-level functions start with a verb from a small dictionary. No `data`, no `info`, no `manager`. Identifiers stay short, intent-revealing, one word per concept.
 

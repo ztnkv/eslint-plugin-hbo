@@ -1,6 +1,6 @@
 {
   "name": "@deniszhitnyakov/eslint-plugin-hbo",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Opinionated ESLint rules — author's own conventions: blank-line discipline, error-handling, test file layout, naming hygiene.",
   "keywords": [
     "eslint",
