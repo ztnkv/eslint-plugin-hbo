@@ -98,6 +98,30 @@ export default [
 |---|---|
 | `no-multiline-comments` | No multi-line `/* ... */` comments; no consecutive `//` lines forming a paragraph. |
 
+### Database migrations
+
+| Rule | What it enforces | Options |
+|---|---|---|
+| `migration-must-have-test` | Every forward-only `*.sql` migration in a `migrations/` dir must have a co-located verification test `__tests__/<base>.test.ts` (Testcontainers smoke + schema assertion). Skips the drizzle `meta/` folder and the tests themselves. | `migrationsDir` (default `migrations`), `testsDir` (default `__tests__`), `testSuffix` (default `.test.ts`; the `.test.tsx` twin is also accepted). |
+
+`.sql` files aren't in ESLint's default lint set, so this rule keys off the
+filename via a tiny passthrough parser the plugin ships (`hbo.parsers.passthrough`).
+Wire it up with a dedicated flat-config block scoped to your migrations:
+
+```js
+// eslint.config.js
+import hbo from '@deniszhitnyakov/eslint-plugin-hbo';
+
+export default [
+  {
+    files: ['**/migrations/**/*.sql'],
+    languageOptions: { parser: hbo.parsers.passthrough },
+    plugins: { hbo },
+    rules: { 'hbo/migration-must-have-test': 'error' },
+  },
+];
+```
+
 ### Framework-specific
 
 | Rule | What it enforces |

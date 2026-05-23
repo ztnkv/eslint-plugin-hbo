@@ -8,6 +8,7 @@ import { rule as blockSwitchBlankLines } from './rules/block-switch-blank-lines/
 import { rule as blockWhileBlankLines } from './rules/block-while-blank-lines/block-while-blank-lines.js';
 import { rule as expectBlankLine } from './rules/expect-blank-line/expect-blank-line.js';
 import { rule as identifierDenylist } from './rules/identifier-denylist/identifier-denylist.js';
+import { rule as migrationMustHaveTest } from './rules/migration-must-have-test/migration-must-have-test.js';
 import { rule as noEmptyArrayZustandSelector } from './rules/no-empty-array-zustand-selector/no-empty-array-zustand-selector.js';
 import { rule as noInlineTestFactories } from './rules/no-inline-test-factories/no-inline-test-factories.js';
 import { rule as noMultilineComments } from './rules/no-multiline-comments/no-multiline-comments.js';
@@ -22,10 +23,16 @@ import { rule as testBodyAaaBlankLines } from './rules/test-body-aaa-blank-lines
 import { rule as testFileSuffixAllowlist } from './rules/test-file-suffix-allowlist/test-file-suffix-allowlist.js';
 import { rule as testMatcherStyle } from './rules/test-matcher-style/test-matcher-style.js';
 
+import { passthrough } from './parsers/passthrough.js';
+
 const plugin = {
   meta: {
     name: '@deniszhitnyakov/eslint-plugin-hbo',
-    version: '0.2.0',
+    version: '0.3.0',
+  },
+
+  parsers: {
+    passthrough,
   },
 
   rules: {
@@ -39,6 +46,7 @@ const plugin = {
     'block-switch-blank-lines': blockSwitchBlankLines,
     'block-while-blank-lines': blockWhileBlankLines,
     'identifier-denylist': identifierDenylist,
+    'migration-must-have-test': migrationMustHaveTest,
     'no-empty-array-zustand-selector': noEmptyArrayZustandSelector,
     'no-inline-test-factories': noInlineTestFactories,
     'no-multiline-comments': noMultilineComments,
