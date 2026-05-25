@@ -128,6 +128,58 @@ export default [
 |---|---|
 | `no-empty-array-zustand-selector` | Catches a common Zustand foot-gun — selectors that return a fresh `[]` on every call and trigger re-renders. |
 
+### Internationalization (i18n)
+
+| Rule | What it enforces | Options |
+|---|---|---|
+| `no-hardcoded-jsx-literals` | An i18n-aware gate for codebases whose contract is "in JSX, only translation keys — no hardcoded copy". Flags human-language `JSXText` and bare string/template-literal children; leaves already-localized markup (`{t('key')}`, `<Trans>…</Trans>`) and non-language content (numbers, punctuation, single glyphs) alone. | `translationFunctionNames: string[]` (default `['t']`), `translationComponentNames: string[]` (default `['Trans']`), `allowedStrings: string[]` (default `[]`), `checkAttributes: boolean` (default `false`), `attributes: string[]` (default `['aria-label', 'title', 'placeholder', 'alt', 'label']`), `minLetters: number` (default `2`). |
+
+This is not a clone of `react/jsx-no-literals` — that rule flags *every* literal
+and has no idea what `t(...)` or `<Trans>` mean, so it can't tell user-facing
+copy from technical prop enums. `no-hardcoded-jsx-literals` is i18n-aware: it
+recognizes your translation API and only flags copy that actually needs a key.
+
+```jsx
+// incorrect — hardcoded user-facing copy
+<Typography>Colour</Typography>
+<Box>{'Some copy'}</Box>
+<Box>{`Some copy`}</Box>
+
+// correct — localized, or not language
+<Typography>{t('palette.colour')}</Typography>
+<Trans i18nKey="palette.colour">Colour</Trans>
+<Box>{count}</Box>
+<Stack direction="row" variant="h5" />   // technical props: attributes unchecked by default
+```
+
+Scope the rule yourself — it ships no hardcoded file exclusions. Point it at your
+component code and exclude stories / design-system / generated files via
+`files` / `ignores` in your flat config:
+
+```js
+// eslint.config.js
+import hbo from '@deniszhitnyakov/eslint-plugin-hbo';
+
+export default [
+  {
+    files: ['src/**/*.tsx'],
+    ignores: ['**/*.stories.tsx'],
+    plugins: { hbo },
+    languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } },
+    rules: {
+      // Start at 'warn' while you migrate strings to keys, then promote to 'error'.
+      'hbo/no-hardcoded-jsx-literals': [
+        'warn',
+        { translationFunctionNames: ['t'], translationComponentNames: ['Trans'] },
+      ],
+    },
+  },
+];
+```
+
+Recommended severity: start with `warn`. There is **no autofix** — replacing a
+literal with `t('key')` means choosing a key, which is a human decision.
+
 ## Philosophy
 
 A few principles behind these rules:

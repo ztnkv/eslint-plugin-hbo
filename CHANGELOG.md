@@ -4,6 +4,23 @@ All notable changes to `@deniszhitnyakov/eslint-plugin-hbo` are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/), and the
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.5.0]
+
+### Added
+
+- **`no-hardcoded-jsx-literals` rule** — an i18n-aware gate for codebases whose
+  contract is "in JSX, only translation keys, no hardcoded copy". Unlike
+  `react/jsx-no-literals`, it understands the translation API: it leaves
+  `{t('key')}` calls and `<Trans>…</Trans>` subtrees alone, ignores non-language
+  content (numbers, punctuation, single glyphs, below a configurable letter
+  threshold), and flags only human-language `JSXText` and bare
+  string/template-literal children. Options: `translationFunctionNames`
+  (default `['t']`), `translationComponentNames` (default `['Trans']`),
+  `allowedStrings` (default `[]`), `checkAttributes` (default `false`),
+  `attributes` (default `['aria-label', 'title', 'placeholder', 'alt', 'label']`),
+  `minLetters` (default `2`). No autofix — picking a key is a human decision.
+  Recommended starting severity: `warn`.
+
 ## [0.4.1]
 
 > Supersedes a withdrawn `0.4.0` that shipped only partial `.security` support
