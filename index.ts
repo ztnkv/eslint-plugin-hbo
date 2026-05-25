@@ -14,6 +14,7 @@ import { rule as noHardcodedJsxLiterals } from './rules/no-hardcoded-jsx-literal
 import { rule as noInlineTestFactories } from './rules/no-inline-test-factories/no-inline-test-factories.js';
 import { rule as noMultilineComments } from './rules/no-multiline-comments/no-multiline-comments.js';
 import { rule as noMultipleClassesPerFile } from './rules/no-multiple-classes-per-file/no-multiple-classes-per-file.js';
+import { rule as noNonTestidQueries } from './rules/no-non-testid-queries/no-non-testid-queries.js';
 import { rule as noReusableInlineTestHelpers } from './rules/no-reusable-inline-test-helpers/no-reusable-inline-test-helpers.js';
 import { rule as noStandaloneFunctionsWithClass } from './rules/no-standalone-functions-with-class/no-standalone-functions-with-class.js';
 import { rule as noTestFileNameMismatch } from './rules/no-test-file-name-mismatch/no-test-file-name-mismatch.js';
@@ -29,7 +30,7 @@ import { passthrough } from './parsers/passthrough.js';
 const plugin = {
   meta: {
     name: '@deniszhitnyakov/eslint-plugin-hbo',
-    version: '0.5.0',
+    version: '0.6.0',
   },
 
   parsers: {
@@ -53,6 +54,7 @@ const plugin = {
     'no-inline-test-factories': noInlineTestFactories,
     'no-multiline-comments': noMultilineComments,
     'no-multiple-classes-per-file': noMultipleClassesPerFile,
+    'no-non-testid-queries': noNonTestidQueries,
     'no-reusable-inline-test-helpers': noReusableInlineTestHelpers,
     'no-standalone-functions-with-class': noStandaloneFunctionsWithClass,
     'no-test-file-name-mismatch': noTestFileNameMismatch,

@@ -4,6 +4,22 @@ All notable changes to `@deniszhitnyakov/eslint-plugin-hbo` are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/), and the
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.0]
+
+### Added
+
+- **`no-non-testid-queries` rule** — single elements must be selected by the
+  test-id attribute only. Covers Testing Library, Playwright, Cypress and native
+  DOM: flags `getBy*`/`queryBy*`/`findBy*` for every suffix but `TestId`, CSS
+  string selectors in `querySelector`/`closest`/`locator`/`$`/`cy.get` that don't
+  reduce to `[data-testid…]`, native `getElementById`, and `cy.contains` (text
+  selection). Collision-safe: `get`/`contains` only fire on a `cy` chain root, so
+  `Map.get` is untouched, and bare `.find()` is left alone. Options: `attribute`
+  (default `data-testid`), `includeMultiple` (default `false` — also flags
+  `getAllBy*`, `querySelectorAll`, `$$`, `getElementsBy*`), `allowDynamicSelectors`
+  (default `true` — skips non-static selector args), `allowedMethods` (default
+  `[]` — escape hatch by method name). No autofix — a testid is a human decision.
+
 ## [0.5.0]
 
 ### Added

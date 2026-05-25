@@ -84,6 +84,12 @@ export default [
 | `no-inline-test-factories` | Factories (`make*`, `create*`, `build*`, `arrange*`, `Fake*`, `Mock*`) used inside test files must live in `__test-support__/`. |
 | `no-reusable-inline-test-helpers` | Any top-level helper used in 2+ test blocks must live in `__test-support__/`. |
 
+### Testing selectors
+
+| Rule | What it enforces | Options |
+|---|---|---|
+| `no-non-testid-queries` | Single elements must be selected by the test-id attribute only. Flags Testing Library / Playwright `getBy*`/`queryBy*`/`findBy*` (everything but the `TestId` suffix), CSS string selectors in `querySelector`/`closest`/Playwright `locator`/`$`/Cypress `cy.get` that don't reduce to `[data-testid…]`, native `getElementById`, and `cy.contains` (text selection). `get`/`contains` only fire on a `cy` chain root, so `Map.get` is safe; bare `.find()` is left alone. | `attribute: string` (default `data-testid`), `includeMultiple: boolean` (default `false`; also flags `getAllBy*`, `querySelectorAll`, `$$`, `getElementsBy*`), `allowDynamicSelectors: boolean` (default `true`; skips non-static selector args), `allowedMethods: string[]` (default `[]`; escape hatch by method name). |
+
 ### Naming & structure
 
 | Rule | What it enforces |
