@@ -4,6 +4,20 @@ All notable changes to `@deniszhitnyakov/eslint-plugin-hbo` are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/), and the
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.7.0]
+
+### Added
+
+- **`no-code-comments` rule** — disallows code comments outright. The only
+  permitted forms are: local next-line rule disables (`// eslint-disable-next-line ...`,
+  `// @ts-expect-error ...`, also the block-form `/* eslint-disable-next-line ... */`);
+  todo-tags `TODO`, `FIXME`, `FIX`, `HACK`, `NOTE`, `XXX`, `BUG` — the tag must be
+  followed by `:`, `(` (for the `TAG(owner): ...` form), or a space (so prefixes like
+  `TODOLIST` don't slip through); and the emergency-escape `// ! <reason>` for the
+  rare case a comment is genuinely unavoidable. Lowercase `todo:`, whole-file
+  `eslint-disable`, same-line `eslint-disable-line`, `@ts-ignore`, and plain
+  explanatory comments are all rejected. No options, no autofix.
+
 ## [0.6.0]
 
 ### Added

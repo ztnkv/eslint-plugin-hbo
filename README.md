@@ -103,6 +103,7 @@ export default [
 | Rule | What it enforces |
 |---|---|
 | `no-multiline-comments` | No multi-line `/* ... */` comments; no consecutive `//` lines forming a paragraph. |
+| `no-code-comments` | No code comments. The only permitted forms: local next-line rule disables (`// eslint-disable-next-line ...`, `// @ts-expect-error ...`); todo-tags (`// TODO:`, `// FIXME:`, `// FIX:`, `// HACK:`, `// NOTE:`, `// XXX:`, `// BUG:` — also the `TAG(owner): ...` form); and the emergency-escape `// ! <reason>` for cases where a comment is genuinely unavoidable. |
 
 ### Database migrations
 

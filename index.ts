@@ -9,6 +9,7 @@ import { rule as blockWhileBlankLines } from './rules/block-while-blank-lines/bl
 import { rule as expectBlankLine } from './rules/expect-blank-line/expect-blank-line.js';
 import { rule as identifierDenylist } from './rules/identifier-denylist/identifier-denylist.js';
 import { rule as migrationMustHaveTest } from './rules/migration-must-have-test/migration-must-have-test.js';
+import { rule as noCodeComments } from './rules/no-code-comments/no-code-comments.js';
 import { rule as noEmptyArrayZustandSelector } from './rules/no-empty-array-zustand-selector/no-empty-array-zustand-selector.js';
 import { rule as noHardcodedJsxLiterals } from './rules/no-hardcoded-jsx-literals/no-hardcoded-jsx-literals.js';
 import { rule as noInlineTestFactories } from './rules/no-inline-test-factories/no-inline-test-factories.js';
@@ -30,7 +31,7 @@ import { passthrough } from './parsers/passthrough.js';
 const plugin = {
   meta: {
     name: '@deniszhitnyakov/eslint-plugin-hbo',
-    version: '0.6.0',
+    version: '0.7.0',
   },
 
   parsers: {
@@ -49,6 +50,7 @@ const plugin = {
     'block-while-blank-lines': blockWhileBlankLines,
     'identifier-denylist': identifierDenylist,
     'migration-must-have-test': migrationMustHaveTest,
+    'no-code-comments': noCodeComments,
     'no-empty-array-zustand-selector': noEmptyArrayZustandSelector,
     'no-hardcoded-jsx-literals': noHardcodedJsxLiterals,
     'no-inline-test-factories': noInlineTestFactories,
